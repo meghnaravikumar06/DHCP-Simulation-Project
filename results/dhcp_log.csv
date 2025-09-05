@@ -1,0 +1,26 @@
+Time,Event
+02:14:54,DHCP Discover Sent | Client: C1
+02:14:54,DHCP Offer Sent    | Client: C1 | IP: 192.168.1.2
+02:14:55,DHCP Discover Sent | Client: C2
+02:14:55,DHCP Discover Sent | Client: C3
+ IP: 192.168.1.2
+02:14:55,Client Received IP | Client: C1 | IP: 192.168.1.2
+02:14:55,DHCP Offer Sent    | Client: C2 | IP: 192.168.1.3
+02:14:56,DHCP Discover Sent | Client: C4
+02:14:56,DHCP Discover Sent | Client: C5
+02:14:56,DHCP ACK Sent      | Client: C2 | IP: 192.168.1.3
+02:14:56,Client Received IP | Client: C2 | IP: 192.168.1.3
+02:14:56,DHCP Offer Sent    | Client: C3 | IP: 192.168.1.4
+02:14:57,DHCP ACK Sent      | Client: C3 | IP: 192.168.1.4
+02:14:57,Client Received IP | Client: C3 | IP: 192.168.1.4
+02:14:57,DHCP Offer Sent    | Client: C4 | IP: 192.168.1.5
+02:14:58,DHCP ACK Sent      | Client: C4 | IP: 192.168.1.5
+02:14:58,Client Received IP | Client: C4 | IP: 192.168.1.5
+02:14:58,DHCP Offer Sent    | Client: C5 | IP: 192.168.1.6
+02:14:59,DHCP ACK Sent      | Client: C5 | IP: 192.168.1.6
+02:14:59,Client Received IP | Client: C5 | IP: 192.168.1.6
+02:15:09,Lease Expired      | Client: C1 | IP: 192.168.1.2
+02:15:10,Lease Expired      | Client: C2 | IP: 192.168.1.3
+02:15:11,Lease Expired      | Client: C3 | IP: 192.168.1.4
+02:15:12,Lease Expired      | Client: C4 | IP: 192.168.1.5
+02:15:13,Lease Expired      | Client: C5 | IP: 192.168.1.6
