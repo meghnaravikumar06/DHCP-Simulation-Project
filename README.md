@@ -43,14 +43,14 @@ To simulate the working of a **DHCP Server** (as defined in RFC 2131) that dynam
   
   Clone this repo
   ```bash
-  git clone https://github.com/<your-username>/DHCP-Simulation-Project.git
+  git clone https://github.com/meghnaravikumar06/DHCP-Simulation-Project.git
   cd DHCP-Simulation-Project/src
 ```
   Run the simulation
   ```bash
   python3 dhcp_simulation.py
   ```
-  Logs will be saved in:
+  Logs will be saved locally in:
   ```bash
   results/dhcp_log.csv
 ```
