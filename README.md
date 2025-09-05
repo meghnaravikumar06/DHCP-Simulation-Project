@@ -58,12 +58,12 @@ To simulate the working of a **DHCP Server** (as defined in RFC 2131) that dynam
 
 ## Sample Output
 ```bash
-  [12:00:01] DHCP Discover Sent | Client: C1 | IP:
-  [12:00:01] DHCP Offer Sent    | Client: C1 | IP: 192.168.1.5
-  [12:00:02] DHCP ACK Sent      | Client: C1 | IP: 192.168.1.5
-  [12:00:02] Client Received IP | Client: C1 | IP: 192.168.1.5
-  ...
-  [12:00:22] Lease Expired      | Client: C1 | IP: 192.168.1.5
+[12:00:01] DHCP Discover Sent | Client: C1 | IP:
+[12:00:01] DHCP Offer Sent    | Client: C1 | IP: 192.168.1.5
+[12:00:02] DHCP ACK Sent      | Client: C1 | IP: 192.168.1.5
+[12:00:02] Client Received IP | Client: C1 | IP: 192.168.1.5
+...
+[12:00:22] Lease Expired      | Client: C1 | IP: 192.168.1.5
 ```
   ---
 
