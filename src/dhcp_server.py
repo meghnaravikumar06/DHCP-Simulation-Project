@@ -1,3 +1,6 @@
+import os
+if not.os.path.exists("results"):
+    os.makedirs("results")
 import socket
 import threading
 import time
