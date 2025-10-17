@@ -3,6 +3,7 @@ import time
 
 SERVER_PORT = 5005
 BUFFER_SIZE = 1024
+LEASE_TIME = 30
 
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 client_socket.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
@@ -19,7 +20,7 @@ def dhcp_discover():
             return offered_ip, addr[0]
     except socket.timeout:
         print("No offer received, retrying...")
-        return None, None
+    return None, None
 
 def dhcp_request(ip, server_ip):
     client_socket.sendto(f"REQUEST:{ip}".encode(), (server_ip, SERVER_PORT))
@@ -32,10 +33,9 @@ def dhcp_request(ip, server_ip):
             return assigned_ip
         elif msg.startswith("NACK:"):
             print(f"NACK received for IP {ip}")
-            return None
     except socket.timeout:
         print("No ACK received, retrying...")
-        return None
+    return None
 
 if __name__ == "__main__":
     while True:
@@ -44,4 +44,4 @@ if __name__ == "__main__":
             assigned_ip = dhcp_request(offered_ip, server_ip)
             if assigned_ip:
                 print(f"Assigned IP: {assigned_ip}")
-                time.sleep(40)  # wait for lease expiry
+                time.sleep(LEASE_TIME)
