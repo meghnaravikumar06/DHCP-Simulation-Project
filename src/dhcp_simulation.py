@@ -2,23 +2,17 @@ import threading
 import time
 import csv
 
-# -----------------------------
 # CONFIGURATION
-# -----------------------------
 IP_POOL = [f"192.168.1.{i}" for i in range(2, 20)]  # IP pool
 LEASE_TIME = 15  # seconds, for demo purposes
 STATUS_INTERVAL = 5  # seconds between status displays
 LOG_FILE = "../results/dhcp_log.csv"
 
-# -----------------------------
 # GLOBAL VARIABLES
-# -----------------------------
 assigned_ips = {}  # client_id : (ip, lease_expiry)
 lock = threading.Lock()  # For thread-safe operations
 
-# -----------------------------
 # HELPER FUNCTIONS
-# -----------------------------
 def log_event(event):
     timestamp = time.strftime("%H:%M:%S", time.localtime())
     with open(LOG_FILE, "a", newline="") as f:
@@ -78,9 +72,7 @@ def display_status():
             print(f"Assigned IPs: {assigned_ips}")
             print(f"---------------\n")
 
-# -----------------------------
 # CLIENT SIMULATION
-# -----------------------------
 def client_simulation(client_id):
     discover(client_id)
     ip = assign_ip(client_id)
@@ -88,9 +80,7 @@ def client_simulation(client_id):
     while ip and client_id in assigned_ips:
         time.sleep(1)
 
-# -----------------------------
 # MAIN EXECUTION
-# -----------------------------
 def main():
     # Clear log file
     with open(LOG_FILE, "w", newline="") as f:
