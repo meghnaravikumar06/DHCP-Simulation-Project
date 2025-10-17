@@ -3,8 +3,8 @@ import time
 import csv
 
 # CONFIGURATION
-IP_POOL = [f"192.168.1.{i}" for i in range(2, 20)]  # IP pool
-LEASE_TIME = 15  # seconds, for demo purposes
+IP_POOL = [f"192.168.1.{i}" for i in range(2, 20)]  
+LEASE_TIME = 15  # seconds
 STATUS_INTERVAL = 5  # seconds between status displays
 LOG_FILE = "../results/dhcp_log.csv"
 
