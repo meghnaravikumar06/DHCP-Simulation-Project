@@ -20,12 +20,16 @@ IP_POOL = [f'192.168.1.{i}' for i in range(2, 20)]
 LEASE_TIME = 30  # seconds
 leases = {}
 
+# Lock for thread-safe logging
+log_lock = threading.Lock()
+
 # Function to log events
 def log_event(event):
     timestamp = time.strftime('%H:%M:%S')
-    with open(LOG_FILE, 'a', newline='') as f:
-        writer = csv.writer(f)
-        writer.writerow([timestamp, event])
+    with log_lock:  # ensure only one thread writes at a time
+        with open(LOG_FILE, 'a', newline='') as f:
+            writer = csv.writer(f)
+            writer.writerow([timestamp, event])
     print(f"[{timestamp}] {event}")
 
 # Function to release expired leases
