@@ -63,8 +63,9 @@ def handle_client(data, addr, server_socket):
 # Start server
 def start_server():
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    server_socket.bind(('', SERVER_PORT))
-    log_event(f"DHCP Server started on port {SERVER_PORT}")
+    server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
+    server_socket.bind(('', SERVER_PORT))  # listen on all interfaces
+    log_event(f"DHCP Server started on port {SERVER_PORT} (broadcast enabled)")
 
     # Start lease management thread
     threading.Thread(target=release_expired_leases, daemon=True).start()
@@ -79,30 +80,4 @@ def start_server():
             break
 
 if __name__ == "__main__":
-    start_server()
-    if requested_ip in IP_POOL:
-        IP_POOL.remove(requested_ip)
-        leases[client_id] = (requested_ip, time.time() + LEASE_TIME)
-        server_socket.sendto(f"ACK:{requested_ip}".encode(), addr)
-        log_event(f"ACK sent | Client: {client_id} | IP: {requested_ip}")
-    else:
-        server_socket.sendto(f"NACK:{requested_ip}".encode(), addr)
-        log_event(f"NACK sent | Client: {client_id} | IP: {requested_ip}")
-
-def start_server():
-    server_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_BROADCAST, 1)
-    server_socket.bind(('', SERVER_PORT))  # listen on all interfaces
-    print(f"DHCP Server running on port {SERVER_PORT} (broadcast enabled)")
-
-    threading.Thread(target=release_expired_leases, daemon=True).start()
-
-    while True:
-        data, addr = server_socket.recvfrom(BUFFER_SIZE)
-        threading.Thread(target=handle_client, args=(data, addr, server_socket)).start()
-
-if __name__ == "__main__":
-    with open(LOG_FILE, 'w', newline='') as f:
-        writer = csv.writer(f)
-        writer.writerow(["Timestamp", "Event"])
     start_server()
