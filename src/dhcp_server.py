@@ -80,14 +80,14 @@ def start_server():
 
 if __name__ == "__main__":
     start_server()
-        if requested_ip in IP_POOL:
-            IP_POOL.remove(requested_ip)
-            leases[client_id] = (requested_ip, time.time() + LEASE_TIME)
-            server_socket.sendto(f"ACK:{requested_ip}".encode(), addr)
-            log_event(f"ACK sent | Client: {client_id} | IP: {requested_ip}")
-        else:
-            server_socket.sendto(f"NACK:{requested_ip}".encode(), addr)
-            log_event(f"NACK sent | Client: {client_id} | IP: {requested_ip}")
+    if requested_ip in IP_POOL:
+        IP_POOL.remove(requested_ip)
+        leases[client_id] = (requested_ip, time.time() + LEASE_TIME)
+        server_socket.sendto(f"ACK:{requested_ip}".encode(), addr)
+        log_event(f"ACK sent | Client: {client_id} | IP: {requested_ip}")
+    else:
+        server_socket.sendto(f"NACK:{requested_ip}".encode(), addr)
+        log_event(f"NACK sent | Client: {client_id} | IP: {requested_ip}")
 
 def start_server():
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
